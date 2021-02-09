@@ -10,7 +10,7 @@ import {Text, Grid, Col, Row} from 'native-base';
 
 const Item = ({item}) => (
   <View style={styles.item}>
-    <Grid>
+    <Row>
       <Col style={styles.currentDayCol}>
         <Text style={styles.currentDayTemp}>{item.weekDay}</Text>
       </Col>
@@ -22,12 +22,11 @@ const Item = ({item}) => (
           {Math.round(item.main.temp_max)}
         </Text>
       </Col>
-    </Grid>
+    </Row>
   </View>
 );
 export default function Index(props) {
   const {backgroundImage, currentWeather, forecast} = props;
-  // const renderItem = ({item}) => <Item title={item.dt} />;
   // console.log('forecast', forecast);
   function renderItem({item}) {
     item.weekDay = new Date(item.dt * 1000).toLocaleString('en-us', {
@@ -37,7 +36,11 @@ export default function Index(props) {
     return <Item item={item} />;
   }
   const listHeader = () => (
-    <Row>
+    <Row
+      style={{
+        borderBottomColor: 'white',
+        borderBottomWidth: 1,
+      }}>
       <Col style={styles.currentDayCol}>
         <Text style={styles.currentDayTemp}>
           {currentWeather.main.temp_min}
@@ -124,10 +127,7 @@ const styles = StyleSheet.create({
     marginTop: 0,
   },
   item: {
-    // backgroundColor: '#f9c2ff',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
+    paddingTop: 40,
   },
   title: {
     fontSize: 32,
