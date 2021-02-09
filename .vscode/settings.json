@@ -1,0 +1,9 @@
+{
+  "jshint.options": {
+    "esversion": 9,
+    "laxbreak": true
+  },
+  "jshint.exclude": {
+    "**/*.yaml": true
+  }
+}
