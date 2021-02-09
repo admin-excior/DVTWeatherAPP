@@ -6,7 +6,7 @@ import {
   SafeAreaView,
   FlatList,
 } from 'react-native';
-import {Text, Grid, Col, Row} from 'native-base';
+import {Text, Col, Row} from 'native-base';
 
 const Item = ({item}) => (
   <View style={styles.item}>
@@ -39,7 +39,7 @@ export default function Index(props) {
     <Row
       style={{
         borderBottomColor: 'white',
-        borderBottomWidth: 1,
+        borderBottomWidth: 3,
       }}>
       <Col style={styles.currentDayCol}>
         <Text style={styles.currentDayTemp}>
