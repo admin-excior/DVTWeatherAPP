@@ -32,7 +32,6 @@ export default function Index(props) {
       : currentWeather.weather[0].main === 'Clear'
       ? forest_sunny
       : forest_sunny;
-
   return (
     <>
       <TopCard

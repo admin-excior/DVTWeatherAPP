@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   FlatList,
 } from 'react-native';
+import IconMI from 'react-native-vector-icons/MaterialIcons';
 import {Text, Col, Row} from 'native-base';
 
 const Item = ({item}) => (
@@ -43,17 +44,20 @@ export default function Index(props) {
       }}>
       <Col style={styles.currentDayCol}>
         <Text style={styles.currentDayTemp}>
-          {currentWeather.main.temp_min}
+          {Math.round(currentWeather.main.temp_min)}
         </Text>
         <Text style={styles.currentDayText}>min</Text>
       </Col>
       <Col style={styles.currentDayCol}>
-        <Text style={styles.currentDayTemp}>{currentWeather.main.temp}</Text>
+        <Text style={styles.currentDayTemp}>
+          {Math.round(currentWeather.main.temp)}
+        </Text>
         <Text style={styles.currentDayText}>current</Text>
       </Col>
       <Col style={styles.currentDayCol}>
+        <IconMI name="exposure-zero" size={10} color="lightgrey" />
         <Text style={styles.currentDayTemp}>
-          {currentWeather.main.temp_max}
+          {Math.round(currentWeather.main.temp_max)}
         </Text>
         <Text style={styles.currentDayText}>max</Text>
       </Col>
