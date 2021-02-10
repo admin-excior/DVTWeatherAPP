@@ -7,14 +7,13 @@ import {
   FlatList,
 } from 'react-native';
 import IconMI from 'react-native-vector-icons/MaterialIcons';
-import {Text, Col, Row} from 'native-base';
+import {Text} from 'native-base';
 import {rain, clear, cloudy} from '../Assets/Icons';
 import ListHeader from '../Components/ListHeader';
 import ListItem from '../Components/ListItem';
-
+import MapItem from '../Components/MapItem';
 export default function Index(props) {
-  const {backgroundImage, currentWeather, forecast} = props;
-  // console.log('forecast', forecast);
+  const {backgroundImage, currentWeather, forecast, name} = props;
   function renderItem({item}) {
     item.weekDay = new Date(item.dt * 1000).toLocaleString('en-us', {
       weekday: 'long',
@@ -53,6 +52,7 @@ export default function Index(props) {
         <Text style={styles.currentDayLargeWeather}>
           {currentWeather.weather[0].main}
         </Text>
+        <MapItem name={name} />
       </ImageBackground>
       <View style={styles.bottomContainer}>
         <SafeAreaView style={styles.safeAreaView}>

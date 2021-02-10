@@ -6,7 +6,7 @@ import Loader from './src/Components/Loader';
 export default function App() {
   const weatherLatLon = getWeather();
   if (weatherLatLon.weather) {
-    console.log('weather', weatherLatLon.weather);
+    // console.log('weather', weatherLatLon.weather);
     // return <></>;
     return <Main forecast={weatherLatLon.weather} />;
     // return <MapView latLon={weather.latLon} />;
