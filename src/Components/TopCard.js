@@ -5,9 +5,11 @@ import {
   ImageBackground,
   SafeAreaView,
   FlatList,
+  Image,
 } from 'react-native';
 import IconMI from 'react-native-vector-icons/MaterialIcons';
 import {Text, Col, Row} from 'native-base';
+import {rain, clear, cloudy} from '../Assets/Icons';
 
 const Item = ({item}) => (
   <View style={styles.item}>
@@ -16,7 +18,7 @@ const Item = ({item}) => (
         <Text style={styles.currentDayTemp}>{item.weekDay}</Text>
       </Col>
       <Col style={styles.currentDayCol}>
-        <Text style={styles.currentDayText}>current</Text>
+        <Image source={item.dayIcon} style={styles.image} />
       </Col>
       <Col style={styles.currentDayCol}>
         <IconMI
@@ -39,7 +41,18 @@ export default function Index(props) {
     item.weekDay = new Date(item.dt * 1000).toLocaleString('en-us', {
       weekday: 'long',
     });
-    console.log('weekDay', item.weekDay);
+    item.dayIcon =
+      item.weather[0].main === 'Rain'
+        ? rain
+        : item.weather[0].main === 'Clouds'
+        ? cloudy
+        : item.weather[0].main === 'Clear'
+        ? clear
+        : clear;
+    // console.log('item', item);
+    // console.log('item.main', item.main);
+    // console.log('item.weather[0]main', item.weather[0].main);
+    console.log('item.dayIcon', item.dayIcon);
     return <Item item={item} />;
   }
   const listHeader = () => (
@@ -176,5 +189,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 90,
     top: 1,
+  },
+  image: {
+    flex: 1,
+    width: 30,
+    height: 30,
+    resizeMode: 'contain',
   },
 });

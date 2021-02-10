@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
 
 import TopCard from '../../Components/TopCard';
-import {forest_cloudy} from '../../Assets/Images';
-import {forest_rainy} from '../../Assets/Images';
-import {forest_sunny} from '../../Assets/Images';
+import {forest_cloudy, forest_rainy, forest_sunny} from '../../Assets/Images';
 
 export default function Index(props) {
   //Get the forecast data & convert it to JSON format
