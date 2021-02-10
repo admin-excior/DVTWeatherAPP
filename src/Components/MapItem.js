@@ -19,7 +19,7 @@ export default listHeader = ({name, goto, likeLocation, latLon}) => (
     <Col style={styles.currentDayCol}>
       <IconFO
         style={styles.listHeaderIcon}
-        name="thumbs-o-up"
+        name="heart-o"
         color="white"
         onPress={() => likeLocation({latLon, name})}
       />
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
   currentDayTemp: {
     color: 'white',
     fontSize: 20,
-    bottom: 5,
+    paddingTop: 120,
+    fontWeight: 'bold',
   },
 });
