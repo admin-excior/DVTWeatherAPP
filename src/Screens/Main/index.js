@@ -81,6 +81,16 @@ export default function Index(props) {
         : currentWeather.weather[0].main === 'Clear'
         ? forest_sunny
         : forest_cloudy;
+
+    const backgroundColour =
+      currentWeather.weather[0].main === 'Rain'
+        ? '#57575D'
+        : currentWeather.weather[0].main === 'Clouds'
+        ? '#54717A'
+        : currentWeather.weather[0].main === 'Clear'
+        ? '#47AB2F'
+        : '#54717A';
+
     // console.log('weatherLatLon.weather', weatherLatLon.weather);
     return (
       <>
@@ -92,6 +102,7 @@ export default function Index(props) {
           goto={goto}
           latLon={latLon}
           likeLocation={likeLocation}
+          backgroundColour={backgroundColour}
         />
       </>
     );

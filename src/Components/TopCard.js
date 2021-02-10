@@ -22,6 +22,7 @@ export default function Index(props) {
     goto,
     likeLocation,
     latLon,
+    backgroundColour,
   } = props;
 
   function renderItem({item}) {
@@ -69,7 +70,7 @@ export default function Index(props) {
           latLon={latLon}
         />
       </ImageBackground>
-      <View style={styles.bottomContainer}>
+      <View style={{flex: 1, backgroundColor: backgroundColour}}>
         <SafeAreaView style={styles.safeAreaView}>
           <FlatList
             data={forecast}
