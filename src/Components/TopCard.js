@@ -5,35 +5,13 @@ import {
   ImageBackground,
   SafeAreaView,
   FlatList,
-  Image,
 } from 'react-native';
 import IconMI from 'react-native-vector-icons/MaterialIcons';
 import {Text, Col, Row} from 'native-base';
 import {rain, clear, cloudy} from '../Assets/Icons';
+import ListHeader from '../Components/ListHeader';
+import ListItem from '../Components/ListItem';
 
-const Item = ({item}) => (
-  <View style={styles.item}>
-    <Row>
-      <Col style={styles.currentDayCol}>
-        <Text style={styles.currentDayTemp}>{item.weekDay}</Text>
-      </Col>
-      <Col style={styles.currentDayCol}>
-        <Image source={item.dayIcon} style={styles.image} />
-      </Col>
-      <Col style={styles.currentDayCol}>
-        <IconMI
-          style={styles.listHeaderIcon}
-          name="exposure-zero"
-          size={20}
-          color="white"
-        />
-        <Text style={styles.currentDayTemp}>
-          {Math.round(item.main.temp_max)}
-        </Text>
-      </Col>
-    </Row>
-  </View>
-);
 export default function Index(props) {
   const {backgroundImage, currentWeather, forecast} = props;
   // console.log('forecast', forecast);
@@ -41,6 +19,11 @@ export default function Index(props) {
     item.weekDay = new Date(item.dt * 1000).toLocaleString('en-us', {
       weekday: 'long',
     });
+
+    /**
+     * Set the forecast image, depending on the weather value.
+     * If it's anything not in our list we default to cloudy. As it's closer to storms etc.
+     */
     item.dayIcon =
       item.weather[0].main === 'Rain'
         ? rain
@@ -48,57 +31,13 @@ export default function Index(props) {
         ? cloudy
         : item.weather[0].main === 'Clear'
         ? clear
-        : clear;
+        : cloudy;
     // console.log('item', item);
     // console.log('item.main', item.main);
     // console.log('item.weather[0]main', item.weather[0].main);
-    console.log('item.dayIcon', item.dayIcon);
-    return <Item item={item} />;
+    // console.log('item.dayIcon', item.dayIcon);
+    return <ListItem item={item} />;
   }
-  const listHeader = () => (
-    <Row
-      style={{
-        borderBottomColor: 'white',
-        borderBottomWidth: 3,
-      }}>
-      <Col style={styles.currentDayCol}>
-        <IconMI
-          style={styles.listHeaderIcon}
-          name="exposure-zero"
-          size={20}
-          color="white"
-        />
-        <Text style={styles.currentDayTemp}>
-          {Math.round(currentWeather.main.temp_min)}
-        </Text>
-        <Text style={styles.currentDayText}>min</Text>
-      </Col>
-      <Col style={styles.currentDayCol}>
-        <IconMI
-          style={styles.listHeaderIcon}
-          name="exposure-zero"
-          size={20}
-          color="white"
-        />
-        <Text style={styles.currentDayTemp}>
-          {Math.round(currentWeather.main.temp)}
-        </Text>
-        <Text style={styles.currentDayText}>current</Text>
-      </Col>
-      <Col style={styles.currentDayCol}>
-        <IconMI
-          style={styles.listHeaderIcon}
-          name="exposure-zero"
-          size={20}
-          color="white"
-        />
-        <Text style={styles.currentDayTemp}>
-          {Math.round(currentWeather.main.temp_max)}
-        </Text>
-        <Text style={styles.currentDayText}>max</Text>
-      </Col>
-    </Row>
-  );
   return (
     <View style={styles.container}>
       <ImageBackground source={backgroundImage} style={styles.imageBackground}>
@@ -121,7 +60,7 @@ export default function Index(props) {
             data={forecast}
             renderItem={renderItem}
             keyExtractor={(item) => item.dt.toString()}
-            ListHeaderComponent={listHeader}
+            ListHeaderComponent={ListHeader({currentWeather})}
           />
         </SafeAreaView>
       </View>
@@ -139,22 +78,6 @@ const styles = StyleSheet.create({
   },
   imageBackground: {
     flex: 1,
-    alignItems: 'center',
-  },
-  currentDayText: {
-    color: 'white',
-    paddingLeft: 10,
-    alignItems: 'center',
-    fontSize: 20,
-  },
-  currentDayTemp: {
-    color: 'white',
-    paddingLeft: 10,
-    alignItems: 'center',
-    fontSize: 25,
-  },
-  currentDayCol: {
-    alignContent: 'center',
     alignItems: 'center',
   },
   currentDayLargeTemp: {
@@ -189,11 +112,5 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 90,
     top: 1,
-  },
-  image: {
-    flex: 1,
-    width: 30,
-    height: 30,
-    resizeMode: 'contain',
   },
 });
