@@ -3,10 +3,15 @@ import {StyleSheet, View, Image} from 'react-native';
 import IconFO from 'react-native-vector-icons/FontAwesome';
 import {Text, Col, Row} from 'native-base';
 
-export default listHeader = ({name}) => (
+export default listHeader = ({name, goto}) => (
   <Row>
     <Col style={styles.currentDayCol}>
-      <IconFO style={styles.listHeaderIcon} name="map-marker" color="red" />
+      <IconFO
+        style={styles.listHeaderIcon}
+        name="map-marker"
+        color="red"
+        onPress={() => goto('MapView')}
+      />
     </Col>
     <Col style={styles.currentDayCol}>
       <Text style={styles.currentDayTemp}>{name}</Text>

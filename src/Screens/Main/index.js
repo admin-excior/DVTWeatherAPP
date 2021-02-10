@@ -4,16 +4,23 @@ import Loader from '../../Components/Loader';
 import TopCard from '../../Components/TopCard';
 import {forest_cloudy, forest_rainy, forest_sunny} from '../../Assets/Images';
 
-export default function Index() {
+export default function Index(props) {
+  console.log('props', props);
+  const navigation = props.navigation;
   const weatherLatLon = getWeather();
+
+  function goto(route) {
+    navigation.navigate(route);
+  }
   if (weatherLatLon.weather) {
     const {name} = JSON.parse(weatherLatLon.weather);
     const {list} = JSON.parse(weatherLatLon.weather);
+    const {latLon} = weatherLatLon;
     const currentWeather = list[0];
     let forecast = [];
-    console.log('name', name);
-    console.log('list', list);
-    console.log('currentWeather', currentWeather);
+    // console.log('latLon', latLon);
+    // console.log('list', list);
+    // console.log('currentWeather', currentWeather);
     for (var i = 0; i < list.length; i += 8) {
       forecast.push(list[i]);
     }
@@ -26,7 +33,7 @@ export default function Index() {
         : currentWeather.weather[0].main === 'Clear'
         ? forest_sunny
         : forest_cloudy;
-    console.log('weatherLatLon.weather', weatherLatLon.weather);
+    // console.log('weatherLatLon.weather', weatherLatLon.weather);
     return (
       <>
         <TopCard
@@ -34,6 +41,8 @@ export default function Index() {
           currentWeather={currentWeather}
           forecast={forecast}
           name={name}
+          goto={goto}
+          latLon={latLon}
         />
       </>
     );

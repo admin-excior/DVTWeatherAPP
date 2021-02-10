@@ -7,7 +7,7 @@ export default function getWeather() {
   const API_KEY = '8cd28b8dcf34fa77181e6d3bbafa4842';
   const [weather, setWeather] = useState(null);
   const latLon = getLocation();
-  console.log('latLon', latLon);
+  // console.log('latLon', latLon);
   useEffect(() => {
     if (latLon) {
       fetchAPI(...latLon);
@@ -24,7 +24,7 @@ export default function getWeather() {
     } catch (err) {
       console.log('Axios failed', err);
       // If we encounter an error - Network, we use data that's stored on the phone's memory
-      // const data = await getAsyncData('@weatherData');
+      const data = await getAsyncData('@weatherData');
       setWeather(data);
     }
   };

@@ -3,8 +3,6 @@ import {createStackNavigator} from 'react-navigation-stack';
 import {createAppContainer} from 'react-navigation';
 import Main from './src/Screens/Main';
 import MapView from './src/Screens/MapView';
-import getWeather from './src/Utils/Weather';
-import Loader from './src/Components/Loader';
 
 const RootStack = createStackNavigator(
   {
