@@ -56,15 +56,6 @@ export default function Index(props) {
         newArray.push(latLon);
         storedAsyncData = await storeAsyncData('@latLon', newArray);
       } else console.log('object already exists');
-      // index === -1
-      //   ? newArray.push(latLon)
-      //   : console.log('object already exists');
-      //  storedAsyncData = await storeAsyncData('@latLon', latLonArray);
-      // console.log('getAsyncData', asyncData);
-      // console.log('retrievedLatLon.length', retrievedLatLon.length);
-      // console.log('index', index);
-      // console.log('newArray', newArray);
-      // console.log('retrievedLatLon latLon', latLon);
     }
   }
   //  Wait for the forecast to be ready, else show loading

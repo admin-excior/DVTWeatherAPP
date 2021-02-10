@@ -1,12 +1,14 @@
 import React from 'react';
 import MapView, {PROVIDER_GOOGLE, Marker, Callout} from 'react-native-maps';
 import {StyleSheet, View} from 'react-native';
-import getLocation from '../../Utils/Location';
+import {getLocation, getAsyncLocations} from '../../Utils/Location';
 import Loader from '../../Components/Loader';
 
 export default function Index(props) {
+  let asyncLocations = [];
   const latLon = getLocation();
-  console.log('latLon', latLon);
+  // asyncLocations = getAsyncLocations();
+
   if (latLon) {
     return (
       <MapView
@@ -24,13 +26,7 @@ export default function Index(props) {
             longitude: latLon[1],
           }}
           title="Title"
-          description="description">
-          <Callout tooltip>
-            <View>
-              <View></View>
-            </View>
-          </Callout>
-        </Marker>
+          description="description"></Marker>
       </MapView>
     );
   } else return <Loader />;

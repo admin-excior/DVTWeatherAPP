@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 import {getAsyncData, storeAsyncData} from './Store';
-import getLocation from './Location';
+import {getLocation} from './Location';
 
 export default function getWeather() {
   const API_KEY = '8cd28b8dcf34fa77181e6d3bbafa4842';
