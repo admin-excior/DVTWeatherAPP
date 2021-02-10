@@ -1,10 +1,10 @@
 import AsyncStorage from '@react-native-community/async-storage';
 
 // Save location weather to storage
-export const storeWeatherData = async (value) => {
+export const storeAsyncData = async (key, value) => {
   try {
     const stringValue = JSON.stringify(value);
-    await AsyncStorage.setItem('weatherData', stringValue);
+    await AsyncStorage.setItem(key, stringValue);
     return stringValue;
   } catch (err) {
     console.log(err);
@@ -12,9 +12,9 @@ export const storeWeatherData = async (value) => {
 };
 
 // Save location weather to storage
-export const getWeatherData = async () => {
+export const getAsyncData = async (key) => {
   try {
-    const stringValue = await AsyncStorage.getItem('@weatherData');
+    const stringValue = await AsyncStorage.getItem(key);
     stringValue ? console.log('No data') : console.log('Got data');
     return stringValue;
   } catch (err) {

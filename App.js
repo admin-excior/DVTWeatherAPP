@@ -4,9 +4,11 @@ import MapView from './src/Screens/MapView';
 import getWeather from './src/Utils/Weather';
 import Loader from './src/Components/Loader';
 export default function App() {
-  const weather = getWeather();
-  if (weather) {
-    // return <Main forecast={weather} />;
-    return <MapView forecast={weather} />;
+  const weatherLatLon = getWeather();
+  if (weatherLatLon.weather) {
+    console.log('weather', weatherLatLon.weather);
+    // return <></>;
+    return <Main forecast={weatherLatLon.weather} />;
+    // return <MapView latLon={weather.latLon} />;
   } else return <Loader />;
 }

@@ -1,19 +1,34 @@
 import React from 'react';
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, {PROVIDER_GOOGLE, Marker, Callout} from 'react-native-maps';
 import {StyleSheet, View} from 'react-native';
 
 export default function Index(props) {
-  console.log('props', props);
+  const {latLon} = props;
+  console.log('latLon', latLon);
   return (
     <MapView
       provider={PROVIDER_GOOGLE} // remove if not using Google Maps
       style={styles.map}
       region={{
-        latitude: 37.78825,
-        longitude: -122.4324,
+        latitude: latLon[0],
+        longitude: latLon[1],
         latitudeDelta: 0.015,
         longitudeDelta: 0.0121,
-      }}></MapView>
+      }}>
+      <Marker
+        coordinate={{
+          latitude: latLon[0],
+          longitude: latLon[1],
+        }}
+        title="Title"
+        description="description">
+        <Callout tooltip>
+          <View>
+            <View></View>
+          </View>
+        </Callout>
+      </Marker>
+    </MapView>
   );
 }
 

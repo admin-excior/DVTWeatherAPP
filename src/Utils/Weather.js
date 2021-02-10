@@ -1,12 +1,13 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import {getWeatherData, storeWeatherData} from './Store';
+import {getAsyncData, storeAsyncData} from './Store';
 import getLocation from './Location';
 
 export default function getWeather() {
   const API_KEY = '8cd28b8dcf34fa77181e6d3bbafa4842';
   const [weather, setWeather] = useState(null);
   const latLon = getLocation();
+  console.log('latLon', latLon);
   useEffect(() => {
     if (latLon) {
       fetchAPI(...latLon);
@@ -17,18 +18,18 @@ export default function getWeather() {
     try {
       const URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`;
       const res = await axios.get(URL);
-      const data = await storeWeatherData(filterData(res.data));
+      const data = await storeAsyncData('@weatherData', filterData(res.data));
       // console.log('data', data);
       setWeather(data);
     } catch (err) {
       console.log('Axios failed', err);
       // If we encounter an error - Network, we use data that's stored on the phone's memory
-      const data = await getWeatherData();
+      // const data = await getAsyncData('@weatherData');
       setWeather(data);
     }
   };
 
-  return weather;
+  return {weather, latLon};
 }
 
 const filterData = (rawData) => {
