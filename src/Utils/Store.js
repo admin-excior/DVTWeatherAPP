@@ -2,12 +2,21 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 // Save location weather to storage
 export const storeAsyncData = async (key, value) => {
-  try {
-    const stringValue = JSON.stringify(value);
-    await AsyncStorage.setItem(key, stringValue);
-    return stringValue;
-  } catch (err) {
-    console.log(err);
+  if (value) {
+    try {
+      const stringValue = JSON.stringify(value);
+      await AsyncStorage.setItem(key, stringValue);
+      return stringValue;
+    } catch (err) {
+      console.log(err);
+    }
+  } else {
+    try {
+      await AsyncStorage.setItem(key, '');
+      return;
+    } catch (err) {
+      console.log(err);
+    }
   }
 };
 

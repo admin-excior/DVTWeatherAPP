@@ -3,7 +3,7 @@ import {StyleSheet, View, Image} from 'react-native';
 import IconFO from 'react-native-vector-icons/FontAwesome';
 import {Text, Col, Row} from 'native-base';
 
-export default listHeader = ({name, goto}) => (
+export default listHeader = ({name, goto, likeLocation, latLon}) => (
   <Row>
     <Col style={styles.currentDayCol}>
       <IconFO
@@ -17,7 +17,12 @@ export default listHeader = ({name, goto}) => (
       <Text style={styles.currentDayTemp}>{name}</Text>
     </Col>
     <Col style={styles.currentDayCol}>
-      <IconFO style={styles.listHeaderIcon} name="thumbs-o-up" color="white" />
+      <IconFO
+        style={styles.listHeaderIcon}
+        name="thumbs-o-up"
+        color="white"
+        onPress={() => likeLocation({latLon, name})}
+      />
     </Col>
   </Row>
 );

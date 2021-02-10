@@ -14,7 +14,15 @@ import ListItem from '../Components/ListItem';
 import MapItem from '../Components/MapItem';
 export default function Index(props) {
   // console.log('props', props);
-  const {backgroundImage, currentWeather, forecast, name, goto} = props;
+  const {
+    backgroundImage,
+    currentWeather,
+    forecast,
+    name,
+    goto,
+    likeLocation,
+    latLon,
+  } = props;
 
   function renderItem({item}) {
     item.weekDay = new Date(item.dt * 1000).toLocaleString('en-us', {
@@ -54,7 +62,12 @@ export default function Index(props) {
         <Text style={styles.currentDayLargeWeather}>
           {currentWeather.weather[0].main}
         </Text>
-        <MapItem name={name} goto={goto} />
+        <MapItem
+          name={name}
+          goto={goto}
+          likeLocation={likeLocation}
+          latLon={latLon}
+        />
       </ImageBackground>
       <View style={styles.bottomContainer}>
         <SafeAreaView style={styles.safeAreaView}>
