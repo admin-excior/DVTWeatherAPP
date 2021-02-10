@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet, View, Image} from 'react-native';
 import IconFO from 'react-native-vector-icons/FontAwesome';
-import IconAD from 'react-native-vector-icons/AntDesign';
 import {Text, Col, Row} from 'native-base';
 
 export default listHeader = ({name}) => (
@@ -44,7 +43,7 @@ const styles = StyleSheet.create({
   },
   currentDayTemp: {
     color: 'white',
-    fontSize: 15,
+    fontSize: 20,
     bottom: 5,
   },
 });
