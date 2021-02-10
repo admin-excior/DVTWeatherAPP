@@ -19,6 +19,12 @@ const Item = ({item}) => (
         <Text style={styles.currentDayText}>current</Text>
       </Col>
       <Col style={styles.currentDayCol}>
+        <IconMI
+          style={styles.listHeaderIcon}
+          name="exposure-zero"
+          size={20}
+          color="white"
+        />
         <Text style={styles.currentDayTemp}>
           {Math.round(item.main.temp_max)}
         </Text>
@@ -43,19 +49,36 @@ export default function Index(props) {
         borderBottomWidth: 3,
       }}>
       <Col style={styles.currentDayCol}>
+        <IconMI
+          style={styles.listHeaderIcon}
+          name="exposure-zero"
+          size={20}
+          color="white"
+        />
         <Text style={styles.currentDayTemp}>
           {Math.round(currentWeather.main.temp_min)}
         </Text>
         <Text style={styles.currentDayText}>min</Text>
       </Col>
       <Col style={styles.currentDayCol}>
+        <IconMI
+          style={styles.listHeaderIcon}
+          name="exposure-zero"
+          size={20}
+          color="white"
+        />
         <Text style={styles.currentDayTemp}>
           {Math.round(currentWeather.main.temp)}
         </Text>
         <Text style={styles.currentDayText}>current</Text>
       </Col>
       <Col style={styles.currentDayCol}>
-        <IconMI name="exposure-zero" size={10} color="lightgrey" />
+        <IconMI
+          style={styles.listHeaderIcon}
+          name="exposure-zero"
+          size={20}
+          color="white"
+        />
         <Text style={styles.currentDayTemp}>
           {Math.round(currentWeather.main.temp_max)}
         </Text>
@@ -66,6 +89,12 @@ export default function Index(props) {
   return (
     <View style={styles.container}>
       <ImageBackground source={backgroundImage} style={styles.imageBackground}>
+        <IconMI
+          style={styles.currentDayLargeIcon}
+          name="exposure-zero"
+          size={20}
+          color="white"
+        />
         <Text style={styles.currentDayLargeTemp}>
           {Math.round(currentWeather.main.temp)}
         </Text>
@@ -126,6 +155,12 @@ const styles = StyleSheet.create({
     fontSize: 50,
     color: 'white',
   },
+  currentDayLargeIcon: {
+    fontSize: 40,
+    position: 'absolute',
+    left: 250,
+    top: 100,
+  },
   safeAreaView: {
     flex: 1,
     marginTop: 0,
@@ -135,5 +170,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
+  },
+  listHeaderIcon: {
+    fontSize: 20,
+    position: 'absolute',
+    left: 90,
+    top: 1,
   },
 });
